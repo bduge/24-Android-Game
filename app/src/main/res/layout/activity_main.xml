@@ -1,20 +1,39 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="combduge.httpsgithub.a24game.MainActivity">
+    tools:context="combduge.httpsgithub.a24game.MainActivity"
+    tools:layout_editor_absoluteX="16dp"
+    tools:layout_editor_absoluteY="16dp">
+
 
     <Button
         android:id="@+id/button"
         style="@android:style/Widget.Material.Button.Toggle"
         android:layout_width="111dp"
-        android:layout_height="60dp"
+        android:layout_height="0dp"
+        android:layout_marginBottom="273dp"
         android:fontFamily="@font/baloo"
         android:text="Start "
         android:textSize="18sp"
-        tools:layout_editor_absoluteX="121dp"
-        tools:layout_editor_absoluteY="274dp" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView" />
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="184dp"
+        android:layout_height="0dp"
+        android:layout_marginBottom="123dp"
+        android:layout_marginTop="90dp"
+        android:text="24 Game"
+        android:textAlignment="center"
+        android:textSize="40sp"
+        app:layout_constraintBottom_toTopOf="@+id/button"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 </android.support.constraint.ConstraintLayout>
