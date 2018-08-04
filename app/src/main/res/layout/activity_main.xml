@@ -6,15 +6,14 @@
     android:layout_height="match_parent"
     tools:context="combduge.httpsgithub.a24game.MainActivity"
     tools:layout_editor_absoluteX="16dp"
-    tools:layout_editor_absoluteY="16dp">
-
+    tools:layout_editor_absoluteY="81dp">
 
     <Button
         android:id="@+id/button"
-        style="@android:style/Widget.Material.Button.Toggle"
+        style="@android:style/Widget.Button"
         android:layout_width="111dp"
         android:layout_height="0dp"
-        android:layout_marginBottom="273dp"
+        android:layout_marginBottom="247dp"
         android:fontFamily="@font/baloo"
         android:text="Start "
         android:textSize="18sp"
@@ -27,8 +26,8 @@
         android:id="@+id/textView"
         android:layout_width="184dp"
         android:layout_height="0dp"
-        android:layout_marginBottom="123dp"
-        android:layout_marginTop="90dp"
+        android:layout_marginBottom="105dp"
+        android:layout_marginTop="87dp"
         android:text="24 Game"
         android:textAlignment="center"
         android:textSize="40sp"
