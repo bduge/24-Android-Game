@@ -7,7 +7,7 @@ package combduge.httpsgithub.a24game;
 public class number {
 
     public int value;
-    public boolean used = false;
+    public boolean numberUsed = false;
 
     //generates random number between 1 and 10
     public number(){
@@ -19,7 +19,12 @@ public class number {
         return this.value;
     }
 
+    //returns the number as a string so it can be displayed on the buttons as text
     public String valueToString(){
         return Integer.toString(this.value);
+    }
+
+    public boolean getNumberUsed(){
+        return numberUsed;
     }
 }
