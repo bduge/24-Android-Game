@@ -28,6 +28,15 @@ public class Calculator {
         return x.indexOf(y);
     }
 
+    public boolean checkAnswer(String s){
+        if(this.eval(s)==24){
+            return true;
+        }
+        else{
+            return false;
+        }
+    }
+
     //method to convert string to an equation and solves for the answer
     public static double eval(final String str) {
         return new Object() {

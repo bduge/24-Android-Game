@@ -24,7 +24,10 @@ public class number {
         return Integer.toString(this.value);
     }
 
+    public void setNumberUsed(boolean x){
+        numberUsed = x;
+    }
     public boolean getNumberUsed(){
-        return numberUsed;
+        return this.numberUsed;
     }
 }
