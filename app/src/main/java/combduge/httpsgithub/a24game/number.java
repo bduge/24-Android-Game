@@ -30,4 +30,10 @@ public class number {
     public boolean getNumberUsed(){
         return this.numberUsed;
     }
+
+    public void generateNewValue(){
+        value = (int) (Math.random()*10+1);
+    }
 }
+
+

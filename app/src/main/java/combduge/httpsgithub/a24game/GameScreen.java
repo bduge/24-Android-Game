@@ -1,5 +1,7 @@
 package combduge.httpsgithub.a24game;
 
+import android.content.DialogInterface;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -20,6 +22,7 @@ public class GameScreen extends AppCompatActivity {
         final number number4 = new number();
 
         //initializes boolean status
+        final AlertDialog.Builder builder = new AlertDialog.Builder(this);
 
         //initializes Calculator
         final Calculator eval = new Calculator();
@@ -30,12 +33,11 @@ public class GameScreen extends AppCompatActivity {
         //after each number is pressed, it cannot be pressed again to prevent users from typing the number twice
         //number1
         final Button button1 = findViewById(R.id.numberOne);
-        final String valueNumber1 = number1.valueToString();
-        button1.setText(valueNumber1);
+        button1.setText(number1.valueToString());
         button1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                eval.writeToEquation(valueNumber1);
+                eval.writeToEquation(number1.valueToString());
                 equation.setText(eval.getEquation());
                 button1.setEnabled(false);
                 number1.setNumberUsed(true);
@@ -45,13 +47,12 @@ public class GameScreen extends AppCompatActivity {
 
         //number2
         final Button button2 = findViewById(R.id.numberTwo);
-        final String valueNumber2 = number2.valueToString();
-        button2.setText(valueNumber2);
+        button2.setText(number2.valueToString());
         button2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
-                eval.writeToEquation(valueNumber2);
+                eval.writeToEquation(number2.valueToString());
                 equation.setText(eval.getEquation());
                 button2.setEnabled(false);
                 number2.setNumberUsed(true);
@@ -61,12 +62,11 @@ public class GameScreen extends AppCompatActivity {
 
         //number3
         final Button button3 = findViewById(R.id.numberThree);
-        final String valueNumber3 = number3.valueToString();
-        button3.setText(valueNumber3);
+        button3.setText(number3.valueToString());
         button3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                eval.writeToEquation(valueNumber3);
+                eval.writeToEquation(number3.valueToString());
                 equation.setText(eval.getEquation());
                 button3.setEnabled(false);
                 number3.setNumberUsed(true);
@@ -75,12 +75,11 @@ public class GameScreen extends AppCompatActivity {
 
         //number4
         final Button button4 = findViewById(R.id.numberFour);
-        final String valueNumber4 = number4.valueToString();
-        button4.setText(valueNumber4);
+        button4.setText(number4.valueToString());
         button4.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                eval.writeToEquation(valueNumber4);
+                eval.writeToEquation(number4.valueToString());
                 equation.setText(eval.getEquation());
                 button4.setEnabled(false);
                 number4.setNumberUsed(true);
@@ -181,34 +180,87 @@ public class GameScreen extends AppCompatActivity {
 
                     try{
                         boolean x = eval.checkAnswer(eval.getEquation());
+                        AlertDialog.Builder builder = new AlertDialog.Builder(GameScreen.this);
                         if(x==true){
-                            equation.setText("you win!");
+                            builder.setMessage("correct!")
+                                .setPositiveButton("okay", new DialogInterface.OnClickListener() {
+                                    @Override
+                                    public void onClick(DialogInterface dialogInterface, int i) {
+                                    }
+                                });
+                            AlertDialog winNotification = builder.create();
+                            winNotification.setTitle("24 Game");
+                            winNotification.show();
                         }
                         else if(x==false){
-                            equation.setText("you failed");
+                            builder .setMessage("incorrect")
+                                    .setPositiveButton("okay", new DialogInterface.OnClickListener() {
+                                        @Override
+                                        public void onClick(DialogInterface dialogInterface, int i) {
+                                        }
+                                    });
+                            AlertDialog loseNotification = builder.create();
+                            loseNotification.setTitle("24 Game");
+                            loseNotification.show();
                         }
+                        number1.generateNewValue();
+                        number2.generateNewValue();
+                        number3.generateNewValue();
+                        number4.generateNewValue();
+
+                        button1.setText(number1.valueToString());
+                        button2.setText(number2.valueToString());
+                        button3.setText(number3.valueToString());
+                        button4.setText(number4.valueToString());
+
+                        eval.clearEquation();
+                        equation.setText(eval.getEquation());
+                        button1.setEnabled(true);
+                        button2.setEnabled(true);
+                        button3.setEnabled(true);
+                        button4.setEnabled(true);
+
                     }catch(Exception e){
                         equation.setText("please enter a valid equation");
                     }
-                    
+
+                }
+                else{
+                    builder.setMessage("You must use all four numbers")
+                            .setPositiveButton("okay", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialogInterface, int i) {
+                                }
+                            });
+                    AlertDialog info = builder.create();
+                    info.setTitle("24 Game");
+                    info.show();
                 }
             }
         });
 
+        Button skip = findViewById(R.id.skip);
+        skip.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View view) {
+                number1.generateNewValue();
+                number2.generateNewValue();
+                number3.generateNewValue();
+                number4.generateNewValue();
 
+                button1.setText(number1.valueToString());
+                button2.setText(number2.valueToString());
+                button3.setText(number3.valueToString());
+                button4.setText(number4.valueToString());
 
-
-
-
- /*while(status = true) {
-                try {
-                    eval.eval(eval.getEquation());
-                } catch (Exception e) {
-            (eval.parse(eval.getEquation(),valueNumber1)==0)&&(eval.parse(eval.getEquation(),valueNumber2)==0)
-                &&(eval.parse(eval.getEquation(),valueNumber3)==0)&&(eval.parse(eval.getEquation(),valueNumber4)==0)
-                && (status==true)
-                }
-            }*/
+                eval.clearEquation();
+                equation.setText(eval.getEquation());
+                button1.setEnabled(true);
+                button2.setEnabled(true);
+                button3.setEnabled(true);
+                button4.setEnabled(true);
+            }
+        });
 
     }
 
