@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="combduge.httpsgithub.a24game.GameScreen"
+    tools:context="combduge.httpsgithub.a24game.casualMode"
     tools:layout_editor_absoluteY="25dp">
 
     <Button
@@ -179,11 +179,12 @@
 
     <Button
         android:id="@+id/enter"
+        style="@android:style/Widget.Button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="8dp"
         android:layout_marginTop="8dp"
-        android:text="enter"
+        android:text="Enter"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintHorizontal_bias="0.15"
         app:layout_constraintLeft_toLeftOf="parent"
@@ -193,6 +194,7 @@
 
     <Button
         android:id="@+id/clear"
+        style="@android:style/Widget.Button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="8dp"
@@ -236,6 +238,7 @@
 
     <Button
         android:id="@+id/skip"
+        style="@android:style/Widget.Button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="8dp"

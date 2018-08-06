@@ -8,7 +8,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
-public class GameScreen extends AppCompatActivity {
+public class casualMode extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,6 +27,7 @@ public class GameScreen extends AppCompatActivity {
         //initializes Calculator
         final Calculator eval = new Calculator();
 
+        //initializes textviews
         final TextView equation = findViewById(R.id.equationBox);
 
         //sets the buttons on the screen to the generated numbers and also event handlers for each button
@@ -180,8 +181,8 @@ public class GameScreen extends AppCompatActivity {
 
                     try{
                         boolean x = eval.checkAnswer(eval.getEquation());
-                        AlertDialog.Builder builder = new AlertDialog.Builder(GameScreen.this);
-                        if(x==true){
+                        AlertDialog.Builder builder = new AlertDialog.Builder(casualMode.this);
+                        if(x){
                             builder.setMessage("correct!")
                                 .setPositiveButton("okay", new DialogInterface.OnClickListener() {
                                     @Override
@@ -192,7 +193,7 @@ public class GameScreen extends AppCompatActivity {
                             winNotification.setTitle("24 Game");
                             winNotification.show();
                         }
-                        else if(x==false){
+                        else if(!x){
                             builder .setMessage("incorrect")
                                     .setPositiveButton("okay", new DialogInterface.OnClickListener() {
                                         @Override
