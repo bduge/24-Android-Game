@@ -1,5 +1,6 @@
 package combduge.httpsgithub.a24game;
 
+import android.os.CountDownTimer;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.content.DialogInterface;
@@ -248,6 +249,7 @@ public class timedMode extends AppCompatActivity {
             }
         });
 
+        //set up skip functionality
         Button skip = findViewById(R.id.skip);
         skip.setOnClickListener(new View.OnClickListener(){
             @Override
@@ -270,5 +272,50 @@ public class timedMode extends AppCompatActivity {
                 button4.setEnabled(true);
             }
         });
+
+        //set up timer
+        final TextView timeCounter = findViewById(R.id.timer);
+        CountDownTimer timer = new CountDownTimer(61000,1000) {
+            @Override
+            public void onTick(long timeUntilFinished) {
+                timeCounter.setText(String.format("Time remaining: %d", timeUntilFinished/1000));
+            }
+
+            @Override
+            public void onFinish() {
+                if(count.score >=0 && count.score <2){
+                    builder.setMessage(String.format("Better luck next time... \n Your score was: %d", count.score))
+                            .setPositiveButton("okay", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialogInterface, int i) {
+                                    finish();
+                                }
+                            });
+                }
+                else if(count.score>=2 && count.score<4) {
+                    builder.setMessage(String.format("Not bad. \n Your score was: %d", count.score))
+                            .setPositiveButton("okay", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialogInterface, int i) {
+                                    finish();
+                                }
+                            });
+                }
+                else if(count.score>=4) {
+                    builder.setMessage(String.format("Amazing! \n Your score was: %d", count.score))
+                            .setPositiveButton("okay", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialogInterface, int i) {
+                                    finish();
+                                }
+                            });
+                }
+                AlertDialog gameEnd = builder.create();
+                gameEnd.setTitle("24 Game");
+                gameEnd.show();
+
+            }
+        };
+        timer.start();
     }
 }
