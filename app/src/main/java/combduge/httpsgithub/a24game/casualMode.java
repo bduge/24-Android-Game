@@ -183,7 +183,7 @@ public class casualMode extends AppCompatActivity {
                         boolean x = eval.checkAnswer(eval.getEquation());
                         AlertDialog.Builder builder = new AlertDialog.Builder(casualMode.this);
                         if(x){
-                            builder.setMessage("correct!")
+                            builder.setMessage("Correct!")
                                 .setPositiveButton("okay", new DialogInterface.OnClickListener() {
                                     @Override
                                     public void onClick(DialogInterface dialogInterface, int i) {
@@ -194,7 +194,7 @@ public class casualMode extends AppCompatActivity {
                             winNotification.show();
                         }
                         else if(!x){
-                            builder .setMessage("incorrect")
+                            builder .setMessage("Incorrect")
                                     .setPositiveButton("okay", new DialogInterface.OnClickListener() {
                                         @Override
                                         public void onClick(DialogInterface dialogInterface, int i) {
@@ -222,7 +222,15 @@ public class casualMode extends AppCompatActivity {
                         button4.setEnabled(true);
 
                     }catch(Exception e){
-                        equation.setText("please enter a valid equation");
+                        builder .setMessage("Please enter a valid equation")
+                                .setPositiveButton("okay", new DialogInterface.OnClickListener() {
+                                    @Override
+                                    public void onClick(DialogInterface dialogInterface, int i) {
+                                    }
+                                });
+                        AlertDialog validAlert = builder.create();
+                        validAlert.setTitle("24 Game");
+                        validAlert.show();
                     }
 
                 }

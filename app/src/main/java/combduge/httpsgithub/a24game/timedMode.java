@@ -1,5 +1,7 @@
 package combduge.httpsgithub.a24game;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.CountDownTimer;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -8,6 +10,8 @@ import android.support.v7.app.AlertDialog;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+
+import org.w3c.dom.Text;
 
 public class timedMode extends AppCompatActivity {
 
@@ -28,7 +32,13 @@ public class timedMode extends AppCompatActivity {
         //initializes Calculator
         final Calculator eval = new Calculator();
 
-        //initializes textviews
+        //initializes shared preferences for high score
+        final SharedPreferences prefs = this.getSharedPreferences("HighScoreTracker", Context.MODE_PRIVATE);
+        final SharedPreferences.Editor editor = prefs.edit();
+        final TextView highScore = findViewById(R.id.highscore);
+        highScore.setText(String.format("High score: %d", prefs.getInt("Highscore",0)));
+
+        //initializes equation
         final TextView equation = findViewById(R.id.equationBox);
 
         //initializes score counter
@@ -275,7 +285,7 @@ public class timedMode extends AppCompatActivity {
 
         //set up timer
         final TextView timeCounter = findViewById(R.id.timer);
-        CountDownTimer timer = new CountDownTimer(61000,1000) {
+        CountDownTimer timer = new CountDownTimer(121000,1000) {
             @Override
             public void onTick(long timeUntilFinished) {
                 timeCounter.setText(String.format("Time remaining: %d", timeUntilFinished/1000));
@@ -283,6 +293,10 @@ public class timedMode extends AppCompatActivity {
 
             @Override
             public void onFinish() {
+                if(count.score > prefs.getInt("Highscore", 0)){
+                    editor.putInt("Highscore", count.score);
+                    editor.commit();
+                }
                 if(count.score >=0 && count.score <2){
                     builder.setMessage(String.format("Better luck next time... \n Your score was: %d", count.score))
                             .setPositiveButton("okay", new DialogInterface.OnClickListener() {
