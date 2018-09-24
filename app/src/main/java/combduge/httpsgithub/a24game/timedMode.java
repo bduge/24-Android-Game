@@ -13,6 +13,7 @@ import android.widget.TextView;
 
 import org.w3c.dom.Text;
 
+//activity for the timed mode
 public class timedMode extends AppCompatActivity {
 
     @Override
@@ -284,6 +285,8 @@ public class timedMode extends AppCompatActivity {
         });
 
         //set up timer
+        //timer counts down from 120 seconds and displays game over screen
+        //different game over screen messages depending on the players performance
         final TextView timeCounter = findViewById(R.id.timer);
         CountDownTimer timer = new CountDownTimer(121000,1000) {
             @Override
